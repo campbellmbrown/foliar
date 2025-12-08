@@ -1,9 +1,9 @@
 # Foliar
 
 [![PyPI - Version](https://img.shields.io/pypi/v/foliar?style=for-the-badge)](https://pypi.org/project/foliar/)
-![License](https://img.shields.io/github/license/campbellmbrown/foliar?style=for-the-badge)
-![Deployment](https://img.shields.io/github/actions/workflow/status/campbellmbrown/foliar/deploy.yaml?branch=main&style=for-the-badge&logo=github&label=Deploy)
-![Developement](https://img.shields.io/github/actions/workflow/status/campbellmbrown/foliar/develop.yaml?branch=main&style=for-the-badge&logo=github&label=Develop)
+[![License](https://img.shields.io/github/license/campbellmbrown/foliar?style=for-the-badge)](LICENSE)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/campbellmbrown/foliar/deploy.yaml?branch=main&style=for-the-badge&logo=github&label=Deploy)](https://github.com/campbellmbrown/foliar/actions/workflows/deploy.yaml)
+[![Develop](https://img.shields.io/github/actions/workflow/status/campbellmbrown/foliar/develop.yaml?branch=main&style=for-the-badge&logo=github&label=Develop)](https://github.com/campbellmbrown/foliar/actions/workflows/develop.yaml)
 ![Release](https://img.shields.io/github/v/release/campbellmbrown/foliar?style=for-the-badge&logo=github)
 
 ![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)
