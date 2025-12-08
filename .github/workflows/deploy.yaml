@@ -5,10 +5,9 @@
 #
 # Note this pipeline has been modified to only run on tag pushes.
 #
-name: Deployment
+name: Deploy
 
 on:
-  workflow_dispatch:
   push:
     tags:
       - '*'
