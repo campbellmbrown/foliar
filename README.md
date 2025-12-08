@@ -2,7 +2,8 @@
 
 [![PyPI - Version](https://img.shields.io/pypi/v/foliar?style=for-the-badge)](https://pypi.org/project/foliar/)
 ![License](https://img.shields.io/github/license/campbellmbrown/foliar?style=for-the-badge)
-![Pipeline](https://img.shields.io/github/actions/workflow/status/campbellmbrown/foliar/CI.yml?branch=main&style=for-the-badge&logo=github)
+![Deployment](https://img.shields.io/github/actions/workflow/status/campbellmbrown/foliar/deploy.yaml?branch=main&style=for-the-badge&logo=github&label=Deploy)
+![Developement](https://img.shields.io/github/actions/workflow/status/campbellmbrown/foliar/develop.yaml?branch=main&style=for-the-badge&logo=github&label=Develop)
 ![Release](https://img.shields.io/github/v/release/campbellmbrown/foliar?style=for-the-badge&logo=github)
 
 ![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)
