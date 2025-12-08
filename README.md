@@ -1,6 +1,6 @@
 # Foliar
 
-![PyPI - Version](https://img.shields.io/pypi/v/foliar?style=for-the-badge)
+[![PyPI - Version](https://img.shields.io/pypi/v/foliar?style=for-the-badge)](https://pypi.org/project/foliar/)
 ![License](https://img.shields.io/github/license/campbellmbrown/foliar?style=for-the-badge)
 ![Pipeline](https://img.shields.io/github/actions/workflow/status/campbellmbrown/foliar/CI.yml?branch=main&style=for-the-badge&logo=github)
 ![Release](https://img.shields.io/github/v/release/campbellmbrown/foliar?style=for-the-badge&logo=github)
