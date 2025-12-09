@@ -9,10 +9,7 @@ fn pretty_print_internal(obj: &Bound<'_, PyAny>, indent: usize) -> PyResult<()> 
     let indent_str = " ".repeat(indent);
 
     if obj.hasattr("__dataclass_fields__").unwrap_or(false) {
-        let name = obj
-            .getattr("__class__")?
-            .getattr("__name__")?
-            .str()?;
+        let name = obj.getattr("__class__")?.getattr("__name__")?.str()?;
         let dataclass_fields = obj.getattr("__dataclass_fields__")?;
         let fields = dataclass_fields.cast::<PyDict>()?;
         if fields.len() == 0 {
