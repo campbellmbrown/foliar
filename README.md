@@ -10,6 +10,12 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json&style=for-the-badge)
 
+## Overview
+
+> **foliar** [foh-lee-er]
+>
+> _adjective_: of, relating to, or having the nature of a leaf or leaves.
+
 ## Development
 
 [maturin](https://www.maturin.rs/) is used to build and manage the Python package. To run the package in your development environment, use:
