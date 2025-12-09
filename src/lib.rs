@@ -1,6 +1,8 @@
-use pyo3::prelude::*;
-pub mod pretty;
+mod pretty;
+
 use std::io::Write;
+
+use pyo3::prelude::*;
 
 #[pyfunction]
 fn pretty_print(obj: &Bound<'_, PyAny>) -> PyResult<()> {

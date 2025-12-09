@@ -1,6 +1,7 @@
+use std::io::Write;
+
 use pyo3::prelude::*;
 use pyo3::types::{PyDict, PyList};
-use std::io::Write;
 
 const INDENT: usize = 4;
 const ONE_LEVEL_INDENT: &str = "    ";
@@ -100,4 +101,30 @@ fn print_dict(obj: &Bound<'_, PyDict>, indent: usize, w: &mut dyn Write) -> PyRe
     }
 
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_print_list() -> PyResult<()> {
+        Python::initialize();
+        Python::attach(|py| {
+            let lst = pyo3::types::PyList::new(py, [1, 2, 3])?;
+            let mut buf = Vec::new();
+
+            let obj = lst.as_any();
+            print(obj, 0, &mut buf)?;
+            let out = String::from_utf8(buf)?;
+
+            let expected = r#"[
+    1,
+    2,
+    3,
+]"#;
+            assert_eq!(out, expected);
+            Ok(())
+        })
+    }
 }
