@@ -1,8 +1,8 @@
 use pyo3::prelude::*;
-use pyo3::types::PyDict;
-use pyo3::types::PyList;
+use pyo3::types::{PyDict, PyList};
+use std::io::Write;
 
-fn pretty_print_internal(obj: &Bound<'_, PyAny>, indent: usize) -> PyResult<()> {
+fn pretty_print_internal(obj: &Bound<'_, PyAny>, indent: usize, w: &mut dyn Write) -> PyResult<()> {
     const INDENT: usize = 4;
     const ONE_LEVEL_INDENT: &str = "    ";
 
@@ -12,50 +12,50 @@ fn pretty_print_internal(obj: &Bound<'_, PyAny>, indent: usize) -> PyResult<()> 
         let name = obj.getattr("__class__")?.getattr("__name__")?.str()?;
         let dataclass_fields = obj.getattr("__dataclass_fields__")?;
         let fields = dataclass_fields.cast::<PyDict>()?;
-        if fields.len() == 0 {
-            print!("{name}()");
+        if fields.is_empty() {
+            write!(w, "{name}()")?;
         } else {
-            println!("{name}(");
+            writeln!(w, "{name}(")?;
             for (key, _) in fields.iter() {
                 let key_str = key.str()?;
                 let value = obj.getattr(&key_str)?;
-                print!("{indent_str}{ONE_LEVEL_INDENT}{key_str}=");
-                pretty_print_internal(&value, indent + INDENT)?;
-                println!(",");
+                write!(w, "{indent_str}{ONE_LEVEL_INDENT}{key_str}=")?;
+                pretty_print_internal(&value, indent + INDENT, w)?;
+                writeln!(w, ",")?;
             }
-            print!("{indent_str})");
+            write!(w, "{indent_str})")?;
         }
     } else if obj.is_instance_of::<PyList>() {
-        let list = obj.cast::<pyo3::types::PyList>()?;
-        if list.len() == 0 {
-            print!("[]");
+        let list = obj.cast::<PyList>()?;
+        if list.is_empty() {
+            write!(w, "[]")?;
         } else {
-            println!("[");
+            writeln!(w, "[")?;
             for item in list.iter() {
-                print!("{indent_str}{ONE_LEVEL_INDENT}");
-                pretty_print_internal(&item, indent + INDENT)?;
-                println!(",");
+                write!(w, "{indent_str}{ONE_LEVEL_INDENT}")?;
+                pretty_print_internal(&item, indent + INDENT, w)?;
+                writeln!(w, ",")?;
             }
-            print!("{indent_str}]");
+            write!(w, "{indent_str}]")?;
         }
     } else if obj.is_instance_of::<PyDict>() {
         let dict = obj.cast::<PyDict>()?;
-        if dict.len() == 0 {
-            print!("{{}}");
+        if dict.is_empty() {
+            write!(w, "{{}}")?;
         } else {
-            println!("{{");
+            writeln!(w, "{{")?;
             for (key, value) in dict.iter() {
                 let key_str = key.str()?;
-                print!("{indent_str}{ONE_LEVEL_INDENT}{key_str}: ",);
-                pretty_print_internal(&value, indent + INDENT)?;
-                println!(",");
+                write!(w, "{indent_str}{ONE_LEVEL_INDENT}{key_str}: ")?;
+                pretty_print_internal(&value, indent + INDENT, w)?;
+                writeln!(w, ",")?;
             }
-            print!("{indent_str}}}");
+            write!(w, "{indent_str}}}")?;
         }
     } else {
         // Print as-is
         let repr = obj.repr()?.to_string();
-        print!("{repr}");
+        write!(w, "{repr}")?;
     }
 
     Ok(())
@@ -63,8 +63,9 @@ fn pretty_print_internal(obj: &Bound<'_, PyAny>, indent: usize) -> PyResult<()> 
 
 #[pyfunction]
 fn pretty_print(obj: &Bound<'_, PyAny>) -> PyResult<()> {
-    pretty_print_internal(obj, 0)?;
-    println!();
+    let mut stdout = std::io::stdout();
+    pretty_print_internal(obj, 0, &mut stdout)?;
+    writeln!(stdout)?;
     Ok(())
 }
 

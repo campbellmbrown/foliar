@@ -16,6 +16,13 @@
             "problemMatcher": []
         },
         {
+            "label": "unit tests",
+            "type": "shell",
+            "command": "cargo test",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
             "label": "compile for development",
             "type": "shell",
             "command": "maturin develop",
