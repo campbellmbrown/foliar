@@ -26,14 +26,31 @@ maturin develop
 
 ### Code Quality
 
-To lint the codebase, run:
+To lint Rust code, run:
 
 ```bash
 cargo clippy --fix --allow-dirty -- -W clippy::pedantic
 ```
 
-To format the codebase, run:
+To format Rust code, run:
 
 ```bash
 cargo fmt
+```
+
+To lint Python code, run:
+
+```bash
+ruff check
+```
+
+To format Python code, run:
+```bash
+ruff format
+```
+
+To type check Python code, run:
+
+```bash
+mypy .
 ```
