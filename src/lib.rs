@@ -3,27 +3,27 @@ use pyo3::types::PyDict;
 use pyo3::types::PyList;
 
 fn pretty_print_internal(obj: &Bound<'_, PyAny>, indent: usize) -> PyResult<()> {
+    const INDENT: usize = 4;
+    const ONE_LEVEL_INDENT: &str = "    ";
+
     let indent_str = " ".repeat(indent);
 
     if obj.hasattr("__dataclass_fields__").unwrap_or(false) {
         let name = obj
             .getattr("__class__")?
             .getattr("__name__")?
-            .str()?
-            .to_string();
+            .str()?;
         let dataclass_fields = obj.getattr("__dataclass_fields__")?;
         let fields = dataclass_fields.cast::<PyDict>()?;
-        // If length is 0, just print the name
-        // Otherwise, print the name and the fields
         if fields.len() == 0 {
             print!("{name}()");
         } else {
             println!("{name}(");
             for (key, _) in fields.iter() {
-                let key_str = key.str()?.to_string();
+                let key_str = key.str()?;
                 let value = obj.getattr(&key_str)?;
-                print!("{}{}{}=", indent_str, " ".repeat(4), key_str);
-                pretty_print_internal(&value, indent + 4)?;
+                print!("{indent_str}{ONE_LEVEL_INDENT}{key_str}=");
+                pretty_print_internal(&value, indent + INDENT)?;
                 println!(",");
             }
             print!("{indent_str})");
@@ -35,8 +35,8 @@ fn pretty_print_internal(obj: &Bound<'_, PyAny>, indent: usize) -> PyResult<()> 
         } else {
             println!("[");
             for item in list.iter() {
-                print!("{}{}", indent_str, " ".repeat(4));
-                pretty_print_internal(&item, indent + 4)?;
+                print!("{indent_str}{ONE_LEVEL_INDENT}");
+                pretty_print_internal(&item, indent + INDENT)?;
                 println!(",");
             }
             print!("{indent_str}]");
@@ -48,13 +48,9 @@ fn pretty_print_internal(obj: &Bound<'_, PyAny>, indent: usize) -> PyResult<()> 
         } else {
             println!("{{");
             for (key, value) in dict.iter() {
-                print!(
-                    "{}{}{}: ",
-                    indent_str,
-                    " ".repeat(4),
-                    key.str()?
-                );
-                pretty_print_internal(&value, indent + 4)?;
+                let key_str = key.str()?;
+                print!("{indent_str}{ONE_LEVEL_INDENT}{key_str}: ",);
+                pretty_print_internal(&value, indent + INDENT)?;
                 println!(",");
             }
             print!("{indent_str}}}");
