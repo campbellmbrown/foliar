@@ -9,7 +9,19 @@ const PYTHON_DUNDER_DATACLASS_FIELDS: &str = "__dataclass_fields__";
 const PYTHON_DUNDER_CLASS: &str = "__class__";
 const PYTHON_DUNDER_NAME: &str = "__name__";
 
-pub fn pretty_print(obj: &Bound<'_, PyAny>, indent: usize, w: &mut dyn Write) -> PyResult<()> {
+/// Pretty-print a Python object to the given writer with the specified indentation.
+///
+/// # Arguments
+/// - `obj`: The Python object to print.
+/// - `indent`: The current indentation level.
+/// - `w`: The writer to which the output will be written.
+///
+/// # Returns
+/// A `PyResult<()>` indicating success or failure.
+///
+/// # Errors
+/// Returns an error if writing to `w` fails or if interacting with the python object fails.
+pub fn print(obj: &Bound<'_, PyAny>, indent: usize, w: &mut dyn Write) -> PyResult<()> {
     if obj.hasattr(PYTHON_DUNDER_DATACLASS_FIELDS).unwrap_or(false) {
         print_dataclass(obj, indent, w)?;
     } else if obj.is_instance_of::<PyList>() {
@@ -43,7 +55,7 @@ fn print_dataclass(obj: &Bound<'_, PyAny>, indent: usize, w: &mut dyn Write) -> 
             let key_str = key.str()?;
             let value = obj.getattr(&key_str)?;
             write!(w, "{indent_str}{ONE_LEVEL_INDENT}{key_str}=")?;
-            pretty_print(&value, indent + INDENT, w)?;
+            print(&value, indent + INDENT, w)?;
             writeln!(w, ",")?;
         }
         write!(w, "{indent_str})")?;
@@ -61,7 +73,7 @@ fn print_list(obj: &Bound<'_, PyList>, indent: usize, w: &mut dyn Write) -> PyRe
         writeln!(w, "[")?;
         for item in obj.iter() {
             write!(w, "{indent_str}{ONE_LEVEL_INDENT}")?;
-            pretty_print(&item, indent + INDENT, w)?;
+            print(&item, indent + INDENT, w)?;
             writeln!(w, ",")?;
         }
         write!(w, "{indent_str}]")?;
@@ -79,9 +91,9 @@ fn print_dict(obj: &Bound<'_, PyDict>, indent: usize, w: &mut dyn Write) -> PyRe
         writeln!(w, "{{")?;
         for (key, value) in obj.iter() {
             write!(w, "{indent_str}{ONE_LEVEL_INDENT}")?;
-            pretty_print(&key, indent + INDENT, w)?;
+            print(&key, indent + INDENT, w)?;
             write!(w, ": ")?;
-            pretty_print(&value, indent + INDENT, w)?;
+            print(&value, indent + INDENT, w)?;
             writeln!(w, ",")?;
         }
         write!(w, "{indent_str}}}")?;

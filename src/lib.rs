@@ -1,11 +1,11 @@
 use pyo3::prelude::*;
-mod pretty;
+pub mod pretty;
 use std::io::Write;
 
 #[pyfunction]
 fn pretty_print(obj: &Bound<'_, PyAny>) -> PyResult<()> {
     let mut stdout = std::io::stdout();
-    pretty::pretty_print(obj, 0, &mut stdout)?;
+    pretty::print(obj, 0, &mut stdout)?;
     writeln!(stdout)?;
     Ok(())
 }
