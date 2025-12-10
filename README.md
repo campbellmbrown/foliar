@@ -70,6 +70,12 @@ You can customize the number of spaces to use for indentation by passing the `in
 pretty = Pretty(indent=2)
 ```
 
+## Known Issues
+
+Pylint sometimes complains "*No name 'Pretty' in module 'foliar'*" ([E0611:no-name-in-module](https://pylint.readthedocs.io/en/latest/user_guide/messages/error/no-name-in-module.html)).
+This is because [Pylint doesn't lint Rust-compiled extensions by default](https://pylint.pycqa.org/en/v2.11.1/technical_reference/c_extensions.html).
+This can be fixed by using the [`extension-pkg-allow-list` option](https://pylint.readthedocs.io/en/latest/user_guide/messages/error/no-member.html) in your chosen Pylint configuration.
+
 ## Development
 
 [maturin](https://www.maturin.rs/) is used to build and manage the Python package. To run the package in your development environment, use:
