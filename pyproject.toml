@@ -4,6 +4,11 @@ build-backend = "maturin"
 
 [project]
 name = "foliar"
+description = "Foliar is a Rust-powered library for pretty-printing Python objects."
+authors = [{ name = "Campbell Brown", email = "campbellbrown093@gmail.com" }]
+readme = "README.md"
+license-files = ["LICENSE"]
+keywords = ["rust", "pyo3", "pretty-printing"]
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Rust",
@@ -11,6 +16,11 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dynamic = ["version"]
+
+[project.urls]
+homepage = "https://github.com/campbellmbrown/foliar"
+source = "https://github.com/campbellmbrown/foliar"
+issues = "https://github.com/campbellmbrown/foliar/issues"
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.

@@ -4,7 +4,6 @@
 [![License](https://img.shields.io/github/license/campbellmbrown/foliar?style=for-the-badge)](LICENSE)
 [![Deploy](https://img.shields.io/github/actions/workflow/status/campbellmbrown/foliar/deploy.yaml?style=for-the-badge&logo=github&label=Deploy)](https://github.com/campbellmbrown/foliar/actions/workflows/deploy.yaml)
 [![Develop](https://img.shields.io/github/actions/workflow/status/campbellmbrown/foliar/develop.yaml?branch=main&style=for-the-badge&logo=github&label=Develop)](https://github.com/campbellmbrown/foliar/actions/workflows/develop.yaml)
-![Release](https://img.shields.io/github/v/release/campbellmbrown/foliar?style=for-the-badge&logo=github)
 
 ![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
