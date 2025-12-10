@@ -76,41 +76,6 @@ Pylint sometimes complains "*No name 'Pretty' in module 'foliar'*" ([E0611:no-na
 This is because [Pylint doesn't lint Rust-compiled extensions by default](https://pylint.pycqa.org/en/v2.11.1/technical_reference/c_extensions.html).
 This can be fixed by using the [`extension-pkg-allow-list` option](https://pylint.readthedocs.io/en/latest/user_guide/messages/error/no-member.html) in your chosen Pylint configuration.
 
-## Development
+## Contributing
 
-[maturin](https://www.maturin.rs/) is used to build and manage the Python package. To run the package in your development environment, use:
-
-```bash
-maturin develop
-```
-
-### Code Quality
-
-To lint Rust code, run:
-
-```bash
-cargo clippy --fix --allow-dirty -- -W clippy::pedantic
-```
-
-To format Rust code, run:
-
-```bash
-cargo fmt
-```
-
-To lint Python code, run:
-
-```bash
-ruff check
-```
-
-To format Python code, run:
-```bash
-ruff format
-```
-
-To type check Python code, run:
-
-```bash
-mypy .
-```
+Contributions are welcome! Please see the [contributing guide](CONTRIBUTING.md) for details.
