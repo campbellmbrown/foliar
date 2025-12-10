@@ -14,6 +14,7 @@ pub struct Pretty {
 #[pymethods]
 impl Pretty {
     #[new]
+    #[pyo3(signature = (indent = 4))]
     fn new(indent: Option<usize>) -> Self {
         Self {
             config: Config {
