@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "foliar"
-description = "Foliar is a Rust-powered library for pretty-printing Python objects."
+description = "Foliar is a Rust-powered Python library for pretty-printing Python objects."
 authors = [{ name = "Campbell Brown", email = "campbellbrown093@gmail.com" }]
 readme = "README.md"
 license-files = ["LICENSE"]
