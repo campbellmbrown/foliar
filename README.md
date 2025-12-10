@@ -15,6 +15,36 @@
 >
 > _adjective_: of, relating to, or having the nature of a leaf or leaves.
 
+Are you sick of your Python prints looking like a tangled mess of nested dictionaries and lists, all on one line? Foliar serves as a simple tool to pretty-print complex Python data structures, making them easier to read at a glance.
+
+For example, the following print is difficult to read:
+
+```
+ClassA(simple_bool=True, class_list=[ClassB(simple_int=42, simple_str='Hello,'), ClassB(simple_int=7, simple_str='world!')], simple_dict={'key1': 1, 'key2': 2})
+```
+
+With foliar, the same print becomes much more readable:
+
+```
+ClassA(
+    simple_bool=True,
+    class_list=[
+        ClassB(
+            simple_int=42,
+            simple_str='Hello,',
+        ),
+        ClassB(
+            simple_int=7,
+            simple_str='world!',
+        ),
+    ],
+    simple_dict={
+        'key1': 1,
+        'key2': 2,
+    },
+)
+```
+
 ## Development
 
 [maturin](https://www.maturin.rs/) is used to build and manage the Python package. To run the package in your development environment, use:
