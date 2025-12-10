@@ -15,7 +15,13 @@
 >
 > _adjective_: of, relating to, or having the nature of a leaf or leaves.
 
-Are you sick of your Python prints looking like a tangled mess of nested dictionaries and lists, all on one line? Foliar serves as a simple tool to pretty-print complex Python data structures, making them easier to read at a glance.
+Are you sick of your Python prints looking like a tangled mess of nested dictionaries and lists, all on one line?
+Foliar serves as a simple tool to pretty-print complex Python data structures, making them easier to read at a glance.
+
+- ⚡️ Fast, secure, Rust-powered
+- 🐍 Installable via `pip`
+- 🧩 Easy to use
+- 🙌 Community driven (suggestions and contributions are welcome!)
 
 For example, the following print is difficult to read:
 
