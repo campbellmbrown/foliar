@@ -45,6 +45,31 @@ ClassA(
 )
 ```
 
+## Installation
+
+Foliar can be installed via pip:
+
+```bash
+pip install foliar
+```
+
+## Usage
+
+To use foliar, simply import it and create a `Pretty` object:
+
+```python
+from foliar import Pretty
+
+pretty = Pretty()
+pretty.print("Hello, World!")
+```
+
+You can customize the number of spaces to use for indentation by passing the `indent` parameter (defaults to 4):
+
+```python
+pretty = Pretty(indent=2)
+```
+
 ## Development
 
 [maturin](https://www.maturin.rs/) is used to build and manage the Python package. To run the package in your development environment, use:
