@@ -15,14 +15,27 @@ pub struct Pretty {
 impl Pretty {
     #[new]
     #[pyo3(signature = (indent = 4))]
-    fn new(indent: Option<usize>) -> Self {
+    fn new(indent: usize) -> Self {
         Self {
-            config: Config {
-                indent: indent.unwrap_or(4),
-            },
+            config: Config { indent },
         }
     }
 
+    /// The number of spaces to use for indentation. Default is 4.
+    #[getter]
+    fn indent(&self) -> usize {
+        self.config.indent
+    }
+
+    #[setter]
+    fn set_indent(&mut self, indent: usize) {
+        self.config.indent = indent;
+    }
+
+    /// Pretty-print a Python object to standard output.
+    ///
+    /// Args:
+    ///     obj: The Python object to pretty-print.
     fn print(&mut self, obj: &Bound<'_, PyAny>) -> PyResult<()> {
         let mut stdout = std::io::stdout();
         print(obj, &self.config, 0, &mut stdout)?;
