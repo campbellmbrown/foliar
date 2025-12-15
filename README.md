@@ -67,14 +67,50 @@ To use foliar, simply import it and create a `Pretty` object:
 from foliar import Pretty
 
 pretty = Pretty()
-pretty.print("Hello, World!")
 ```
+
+Then print any Python data structure using the `Pretty` instance:
+
+```python
+@dataclass
+class MyClass:
+    foo: int
+    bar: list[str]
+
+my_object = MyClass(foo=42, bar=["hello", "world"])
+
+pretty.print(my_object)
+```
+
+Which produces the following output:
+
+```
+MyClass(
+    foo=42,
+    bar=[
+        'hello',
+        'world',
+    ],
+)
+```
+
+`print` will print to standard output. `format` can be used to return a formatted string instead:
+
+```python
+formatted_string = pretty.format(my_object)
+```
+
+### Configuration
 
 You can customize the number of spaces to use for indentation by passing the `indent` parameter (defaults to 4):
 
 ```python
 pretty = Pretty(indent=2)
 ```
+
+### Examples
+
+See the [examples directory](examples/) for a collection of usage examples.
 
 ## Known Issues
 

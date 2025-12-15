@@ -50,5 +50,19 @@
             "group": "build",
             "problemMatcher": []
         },
+        {
+            "label": "check all",
+            "type": "shell",
+            "dependsOn": [
+                "rust lint",
+                "rust format",
+                "rust unit tests",
+                "python format",
+                "python lint",
+                "python type check"
+            ],
+            "group": "build",
+            "dependsOrder": "sequence"
+        }
     ]
 }
