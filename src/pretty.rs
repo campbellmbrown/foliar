@@ -1,7 +1,7 @@
 use std::io::Write;
 
 use pyo3::prelude::*;
-use pyo3::types::{PyDict, PyList, PyTuple};
+use pyo3::types::{PyBytes, PyDict, PyList, PyTuple};
 
 const PYTHON_DUNDER_DATACLASS_FIELDS: &str = "__dataclass_fields__";
 const PYTHON_DUNDER_CLASS: &str = "__class__";
@@ -43,6 +43,14 @@ pub fn print(
         write!(w, "{repr}")?;
     }
 
+    Ok(())
+}
+
+pub fn print_escaped_bytes(obj: &Bound<'_, PyBytes>, w: &mut dyn Write) -> PyResult<()> {
+    let bytes = obj.as_bytes();
+    for &b in bytes {
+        write!(w, "\\x{b:02x}")?;
+    }
     Ok(())
 }
 

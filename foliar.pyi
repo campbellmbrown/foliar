@@ -63,3 +63,20 @@ def pretty_print(obj: Any, indent: int = 4) -> None:
         obj (Any): The object to pretty-print.
         indent (int, optional): The number of spaces to use for indentation. Defaults to 4.
     """
+
+def format_escaped_bytes(obj: bytes) -> str:
+    """Prints a bytes object with escaped hex bytes. For example, b"ABC" becomes "\\x41\\x42\\x43".
+
+    Args:
+        obj (bytes): The bytes object to format.
+
+    Returns:
+        str: A string containing the escaped representation of the bytes object.
+    """
+
+def print_escaped_bytes(obj: bytes) -> None:
+    """Prints a bytes object with escaped hex bytes. For example, b"ABC" becomes "\\x41\\x42\\x43".
+
+    Args:
+        obj (bytes): The bytes object to print.
+    """

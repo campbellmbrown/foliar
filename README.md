@@ -61,7 +61,9 @@ pip install foliar
 
 ## Usage
 
-To use foliar, simply import it and create a `Pretty` object:
+### Pretty-Printing Objects
+
+To pretty-print objects, simply import `foliar` and create a `Pretty` object:
 
 ```python
 from foliar import Pretty
@@ -100,7 +102,7 @@ MyClass(
 formatted_string = pretty.format(my_object)
 ```
 
-### Configuration
+#### Configuration
 
 You can customize the number of spaces to use for indentation by passing the `indent` parameter (defaults to 4):
 
@@ -108,7 +110,28 @@ You can customize the number of spaces to use for indentation by passing the `in
 pretty = Pretty(indent=2)
 ```
 
-### Examples
+### Formatting Bytes
+
+Sometimes it's annoying to see printable characters mixed in with non-printable characters when printing bytes.
+Foliar can format bytes to show both printable and non-printable characters as escaped sequences:
+
+```python
+import foliar
+
+byte_data = b"Hello, world!\n"
+
+foliar.print_escaped_bytes(byte_data)
+```
+
+Which produces the following output:
+
+```
+\x48\x65\x6c\x6c\x6f\x2c\x20\x57\x6f\x72\x6c\x64\x21\x0a
+```
+
+`format_escaped_bytes` can be used to return a formatted string instead of printing to standard output.
+
+## Examples
 
 See the [examples directory](examples/) for a collection of usage examples.
 
