@@ -61,14 +61,15 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = [
+    "B",    # bugbear
     "E",    # pycodestyle
     "F",    # pyflakes
-    "W",    # pycodestyle
-    "B",    # bugbear
     "I",    # isort
+    "N",    # pep8-naming
     "PL",   # pylint
     "RUF",  # ruff
     "UP",   # pyupgrade
+    "W",    # pycodestyle
 ]
 ignore = []
 
